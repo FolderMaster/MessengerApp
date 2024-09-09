@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:ViewModel.ViewModels.Pages;assembly=ViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="View.Views.Pages.UserView"
+			 x:DataType="vm:UserViewModel">
+	<Design.DataContext>
+		<vm:UserViewModel />
+	</Design.DataContext>
+	<StackPanel>
+		<Label Content="Connections:"/>
+		<ItemsControl ItemsSource="{Binding User.Connections}"
+					  ItemTemplate="{StaticResource ReadonlyConnectionTemplate}"/>
+		<Label Content="Current connections:"/>
+		<ContentControl Content="{Binding User.CurrentConnection}"
+						ContentTemplate="{StaticResource ConnectionTemplate}"/>
+		<Label Content="ID:"/>
+		<TextBox Text="{Binding User.Id}"/>
+		<Label Content="Name:"/>
+		<TextBox Text="{Binding User.Name}"/>
+	</StackPanel>
+</UserControl>
