@@ -16,9 +16,12 @@
 			<Button Command="{Binding ConnectCommand}" Content="Connect"/>
 		</StackPanel>
 		<ListBox Grid.Row="1" ItemsSource="{Binding Chat.Messages}"
-				 ItemTemplate="{StaticResource MessageTemplate}"/>
+				 ItemTemplate="{StaticResource MessageTemplate}"
+				 SelectionMode="Multiple,Toggle"/>
 		<Grid Grid.Row="2" ColumnDefinitions="*, Auto">
-			<TextBox Grid.Column="0" Text="{Binding Message}"/>
+			<TextBox Grid.Column="0" Text="{Binding Message}"
+					 IsUndoEnabled="True"
+					 TextWrapping="Wrap" AcceptsReturn="True"/>
 			<Button Grid.Column="1" Content="Send"
 					Command="{Binding SendCommand}"/>
 		</Grid>

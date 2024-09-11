@@ -19,6 +19,7 @@
 			</StackPanel>
 		</Border>
 	</Design.PreviewWith>
+	
 	<DataTemplate x:Key="MenuItemTemplate" x:DataType="vm:PageViewModel">
 		<ContentControl Content="{Binding Metadata}"/>
 	</DataTemplate>

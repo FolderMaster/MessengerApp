@@ -3,17 +3,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:ViewModel.ViewModels;assembly=ViewModel"
+			 xmlns:local="clr-namespace:View.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="View.Views.MainView"
-             x:DataType="vm:MainViewModel">
+             x:DataType="vm:MainViewModel"
+			 Name="mainView">
 	<Design.DataContext>
 		<vm:MainViewModel/>
 	</Design.DataContext>
-	<SplitView IsPaneOpen="{Binding $parent.IsPaneOpen}"
-			   DisplayMode="CompactInline">
-		<SplitView.Pane>
-			<StackPanel>
-				<Button Click="Button_Click"
+	<Grid RowDefinitions="*, Auto">
+		<SplitView Grid.Row="0" DisplayMode="CompactOverlay"
+				   IsPaneOpen="{Binding #mainView.IsPaneOpen}">
+			<SplitView.Pane>
+				<StackPanel>
+					<Button Click="Button_Click"
 						HorizontalAlignment="Stretch"
 						HorizontalContentAlignment="Left">
 					<PathIcon Data="{StaticResource MenuIcon}"
@@ -23,9 +26,12 @@
 						 SelectedItem="{Binding SelectedPage}"
 						 ItemTemplate="{StaticResource MenuItemTemplate}"/>
 			</StackPanel>
-		</SplitView.Pane>
-		<TransitioningContentControl MaxWidth="1024" Margin="10"
-									 Content="{Binding SelectedPage}"
-									 ContentTemplate="{StaticResource PageTemplate}"/>
-	</SplitView>
+			</SplitView.Pane>
+			<TransitioningContentControl MaxWidth="1024" Margin="10"
+										 Content="{Binding SelectedPage}"
+										 ContentTemplate="{StaticResource PageTemplate}"/>
+		</SplitView>
+		<Grid Grid.Row="1" Height="{Binding #mainView.InputPaneHeight, Mode=OneWay}"
+			  IsVisible="{Binding #mainView.IsInputPaneVisible, Mode=OneWay}"/>
+	</Grid>
 </UserControl>
